@@ -50,7 +50,7 @@ tap.test('prettifyLevel', t => {
     }
     const colorizer = getColorizer(true)
     const colorized = prettifyLevel({ log, colorizer })
-    t.is(colorized, '\u001B[32mINFO\u001B[39m')
+    t.is(colorized, '\u001B[34mINFO\u001B[39m')
   })
 
   t.end()
@@ -127,6 +127,30 @@ tap.test('prettifyMessage', t => {
     })
     t.is(str, '--> localhost/test')
   })
+
+  t.test('works without levels', async t => {
+    const str = prettifyMessage({
+      log: { request: { url: 'localhost/test' }, msg: 'incoming request' },
+      messageFormat: (log, messageKey, levelLabel) => {
+        let msg = log[messageKey]
+        if (msg === 'incoming request') msg = `--> ${log.request.url}`
+        return msg
+      }
+    })
+    t.is(str, '--> localhost/test')
+  })
+
+  // t.test('works without unrecognized levels', async t => {
+  //   const str = prettifyMessage({
+  //     log: { level: 42,  request: { url: 'localhost/test' }, msg: 'incoming request' },
+  //     messageFormat: (log, messageKey, levelLabel) => {
+  //       let msg = log[messageKey]
+  //       if (msg === 'incoming request') msg = `--> ${log.request.url}`
+  //       return msg
+  //     }
+  //   })
+  //   t.is(str, '--> localhost/test')
+  // })
 
   t.end()
 })
