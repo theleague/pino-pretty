@@ -35,7 +35,7 @@ tap.test('#formatTime', t => {
   })
 
   t.test('translates epoch milliseconds to UTC string given format', async t => {
-    const formattedTime = internals.formatTime(epochMS, 'd mmm yyyy H:MM')
+    const formattedTime = internals.formatTime(epochMS, 'UTC:d mmm yyyy H:MM')
     t.is(formattedTime, '6 Apr 2019 17:30')
   })
 
@@ -60,7 +60,7 @@ tap.test('#formatTime', t => {
   })
 
   t.test('translates date string to UTC string given format', async t => {
-    const formattedTime = internals.formatTime(dateStr, 'd mmm yyyy H:MM')
+    const formattedTime = internals.formatTime(dateStr, 'UTC:d mmm yyyy H:MM')
     t.is(formattedTime, '6 Apr 2019 17:30')
   })
 

@@ -139,7 +139,7 @@ test('basic prettifier tests', (t) => {
 
   t.test('will format time to UTC in custom format', (t) => {
     t.plan(1)
-    const pretty = prettyFactory({ translateTime: 'HH:MM:ss o' })
+    const pretty = prettyFactory({ translateTime: 'UTC:HH:MM:ss o' })
     const log = pino({}, new Writable({
       write (chunk, enc, cb) {
         const formatted = pretty(chunk.toString())

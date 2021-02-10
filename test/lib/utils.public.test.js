@@ -319,19 +319,19 @@ tap.test('prettifyTime', t => {
     t.is(str, '[2019-04-07 13:15:00.000 +0000]')
 
     log = { time: 1554642900000 }
-    str = prettifyTime({ log, translateFormat: 'd mmm yyyy H:MM' })
+    str = prettifyTime({ log, translateFormat: 'UTC:d mmm yyyy H:MM' })
     t.is(str, '[7 Apr 2019 13:15]')
 
     log = { timestamp: 1554642900000 }
-    str = prettifyTime({ log, translateFormat: 'd mmm yyyy H:MM' })
+    str = prettifyTime({ log, translateFormat: 'UTC:d mmm yyyy H:MM' })
     t.is(str, '[7 Apr 2019 13:15]')
 
     log = { time: '2019-04-07T09:15:00.000-04:00' }
-    str = prettifyTime({ log, translateFormat: 'd mmm yyyy H:MM' })
+    str = prettifyTime({ log, translateFormat: 'UTC:d mmm yyyy H:MM' })
     t.is(str, '[7 Apr 2019 13:15]')
 
     log = { timestamp: '2019-04-07T09:15:00.000-04:00' }
-    str = prettifyTime({ log, translateFormat: 'd mmm yyyy H:MM' })
+    str = prettifyTime({ log, translateFormat: 'UTC:d mmm yyyy H:MM' })
     t.is(str, '[7 Apr 2019 13:15]')
   })
 
